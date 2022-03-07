@@ -19,7 +19,7 @@ const WebContent = styled(motion.div)<{ odd: boolean }>`
   display: flex;
   justify-content: center;
   margin: 8% 0px;
-  ${(props) => (props.odd ? "flex-flow : row-reverse;" : null)}
+  flex-flow: ${(props) => (props.odd ? "row-reverse;" : "nowrap")};
 `;
 
 const VideoWrapper = styled.div<{ url: boolean; odd: boolean }>`
@@ -45,10 +45,14 @@ const Application = () => {
   return (
     <>
       {appVideos.map((data) => (
-        <WebContent variants={items} odd={data.id % 2 === 1} key={data.id}>
+        <WebContent
+          variants={items}
+          odd={Boolean(data.id % 2 === 1)}
+          key={data.id}
+        >
           <VideoWrapper
             url={Boolean(data.url)}
-            odd={data.id % 2 === 1}
+            odd={Boolean(data.id % 2 === 1)}
             onClick={() => data.url && newWindow(data.url)}
           >
             <Video src={`/videos/${data.path}`} loop autoPlay muted />

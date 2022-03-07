@@ -34,7 +34,7 @@ interface Iskills {
     | "Framer-motion"
   >;
 }
-interface IVideos extends Iskills {
+export interface IVideos extends Iskills {
   id: number;
   title: string;
   path: string;
