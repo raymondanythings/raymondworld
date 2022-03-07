@@ -2,9 +2,8 @@ import { AnimatePresence } from "framer-motion";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Project from "../../Components/Project";
-import { PageWrapper } from "../../lib/styled";
 
-const Wrapper = styled(PageWrapper)`
+const Wrapper = styled.div`
   max-width: 900px;
   margin: 0 auto;
   padding: 5% 0;

@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Application from "./App/Application";
@@ -27,11 +27,11 @@ const Wrapper = styled(motion.div)`
   flex-direction: column;
   width: 100%;
   padding-bottom: 3%;
-  overflow: scroll;
+  /* overflow: scroll;
   height: 100%;
   &::-webkit-scrollbar {
     display: none;
-  }
+  } */
 `;
 
 const Project = () => {
