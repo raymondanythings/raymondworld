@@ -3,6 +3,9 @@ import "styled-components";
 declare module "styled-components" {
   export interface DefaultTheme {
     bgColor: string;
+    boxColor: string;
+    sectionColor: string;
+    textColor: string;
     shadow: string;
     circles: {
       red: string;

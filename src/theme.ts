@@ -1,8 +1,10 @@
 import { DefaultTheme } from "styled-components";
 
 export const theme: DefaultTheme = {
-  bgColor: "#726464",
-  // bgColor: "white",
+  bgColor: "#222831",
+  boxColor: "#393E46",
+  sectionColor: "#00ADB5",
+  textColor: "#EEEEEE",
   shadow: "rgba(178, 178, 178, 0.25) 12px 13px 7px 2px",
   circles: {
     red: "rgb(238,105,94)",

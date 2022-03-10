@@ -37,7 +37,6 @@ const Project = () => {
       initial="initial"
       animate="start"
       exit="exit"
-      // whileHover="hover"
       key={params.slide}
     >
       {params.slide === "web" && <Web />}

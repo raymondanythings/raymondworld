@@ -1,3 +1,5 @@
+import { atom } from "recoil";
+
 interface Iskills {
   skills?: Array<
     | "React"
@@ -42,87 +44,97 @@ export interface IVideos extends Iskills {
   description?: string;
 }
 
-export const webVideos: IVideos[] = [
-  {
-    id: 0,
-    title: "Netflix Clone",
-    path: "nomflix.webm",
-    url: "https://raymondanythings.github.io/Nomflix/",
-    description: "Netflix Clone using React",
-    skills: [
-      "React",
-      "React-query",
-      "Typescript",
-      "Framer-motion",
-      "Styled-components",
-    ],
-  },
-  {
-    id: 1,
-    title: "Voyager",
-    path: "voyager-web-norack.webm",
-    url: "https://voyager.or.kr",
-    skills: [
-      "React",
-      "Express",
-      "Sass",
-      "Styled-components",
-      "Redux",
-      "Cloudflare",
-      "EC2",
-      "Cloudinary",
-      "Nginx",
-      "Docker",
-      "MongoDB",
-    ],
-  },
-  {
-    id: 2,
-    title: "Youtube Clone",
-    path: "wetube-web.webm",
-    url: "https://raymondtube.herokuapp.com/",
-    skills: [
-      "NodeJs",
-      "Express",
-      "Pug",
-      "Web-assembly",
-      "Ffmpeg",
-      "Sass",
-      "MongoDB",
-      "Webpack",
-      "S3",
-      "Heroku",
-    ],
-  },
-  {
-    id: 3,
-    title: "JobHub",
-    path: "jobhub-web.webm",
-    url: "https://lastchallenge.raymondanything.repl.co/",
-    skills: ["Python", "Flask", "Requests", "BS4"],
-  },
-  {
-    id: 4,
-    title: "Apartment-Now",
-    path: "apartment-web.webm",
-    url: "https://apartmentnow.herokuapp.com/",
-    skills: ["Python", "Numpy", "Pandas", "Flask", "Chartjs"],
-  },
-  {
-    id: 5,
-    title: "Framer To-Do List",
-    path: "kanban-web.webm",
-    url: "https://raymondanythings.github.io/React-KanBanApp/",
-    skills: ["React", "Recoil", "React-dnd", "Typescript", "Styled-components"],
-  },
-  {
-    id: 6,
-    title: "Zoom Clone",
-    path: "zoom-web.webm",
-    url: "https://raymondnoom.herokuapp.com/",
-    skills: ["WebRTC", "SocketIo", "Express", "NodeJs", "Pug"],
-  },
-];
+export const webState = atom<IVideos[]>({
+  key: "webState",
+  default: [
+    {
+      id: 0,
+      title: "Nomflix",
+      path: "nomflix.webm",
+      url: "https://raymondanythings.github.io/Nomflix/",
+      description:
+        "리액트, 리액트쿼리, 타입스크립트, 애니매이션을 활용한 넷플릭스 클론입니다.",
+      skills: [
+        "React",
+        "React-query",
+        "Typescript",
+        "Framer-motion",
+        "Styled-components",
+      ],
+    },
+    {
+      id: 1,
+      title: "Voyager",
+      path: "voyager-web-norack.webm",
+      url: "https://voyager.or.kr",
+      skills: [
+        "React",
+        "Express",
+        "Sass",
+        "Styled-components",
+        "Redux",
+        "Cloudflare",
+        "EC2",
+        "Cloudinary",
+        "Nginx",
+        "Docker",
+        "MongoDB",
+      ],
+    },
+    {
+      id: 2,
+      title: "Youtube Clone",
+      path: "wetube-web.webm",
+      url: "https://raymondtube.herokuapp.com/",
+      skills: [
+        "NodeJs",
+        "Express",
+        "Pug",
+        "Web-assembly",
+        "Ffmpeg",
+        "Sass",
+        "MongoDB",
+        "Webpack",
+        "S3",
+        "Heroku",
+      ],
+    },
+    {
+      id: 3,
+      title: "JobHub",
+      path: "jobhub-web.webm",
+      url: "https://lastchallenge.raymondanything.repl.co/",
+      skills: ["Python", "Flask", "Requests", "BS4"],
+    },
+    {
+      id: 4,
+      title: "Apartment-Now",
+      path: "apartment-web.webm",
+      url: "https://apartmentnow.herokuapp.com/",
+      skills: ["Python", "Numpy", "Pandas", "Flask", "Chartjs"],
+    },
+    {
+      id: 5,
+      title: "Framer To-Do List",
+      path: "kanban-web.webm",
+      url: "https://raymondanythings.github.io/React-KanBanApp/",
+      skills: [
+        "React",
+        "Recoil",
+        "React-dnd",
+        "Typescript",
+        "Styled-components",
+      ],
+    },
+    {
+      id: 6,
+      title: "Zoom Clone",
+      path: "zoom-web.webm",
+      url: "https://raymondnoom.herokuapp.com/",
+      skills: ["WebRTC", "SocketIo", "Express", "NodeJs", "Pug"],
+    },
+  ],
+});
 
 export const appVideos: IVideos[] = [
   {

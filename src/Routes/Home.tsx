@@ -7,6 +7,9 @@ import Proejcts from "./Screens/Projects";
 
 const Wrapper = styled.div`
   position: relative;
+  * {
+    color: ${(props) => props.theme.textColor};
+  }
 `;
 
 const Home = () => {

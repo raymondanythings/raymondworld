@@ -19,11 +19,10 @@ const DetailContent = styled(motion.div)`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  top: 100px;
-  position: relative;
+  margin-top: 20px;
   border: 1px solid;
   border-radius: 10px;
-  background-color: ${(props) => props.theme.bgColor};
+  background-color: ${(props) => props.theme.boxColor};
 `;
 
 const ASideSection = styled.aside`
@@ -31,7 +30,7 @@ const ASideSection = styled.aside`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px 0;
+  padding: 20px 0;
 `;
 
 const SkillsContent = styled.div`
@@ -43,6 +42,7 @@ const SkillWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 10px 0;
   width: 70px;
 `;
 
@@ -50,7 +50,7 @@ const Skills = styled(motion.img)`
   width: 50px;
   height: 50px;
   padding: 2px;
-  background-color: white;
+  background-color: ${(props) => props.theme.textColor};
   border-radius: 10px;
   margin: 0px 10px;
 `;
@@ -80,8 +80,9 @@ const Title = styled.h1`
   margin: 10px 0;
 `;
 
-const Description = styled.span`
+const Description = styled.pre`
   margin-bottom: 20px;
+  margin: 10px 0;
 `;
 
 const skillVariants = {
@@ -133,11 +134,13 @@ const WebDetail: React.FC<{
   selectedData: IVideos;
 }> = ({ selected, setSelected, selectedData }) => {
   return (
-    <Detail
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={() => setSelected("")}
-    >
+    <Detail animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      <Detail
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={() => setSelected("")}
+        style={{ zIndex: -1 }}
+      ></Detail>
       <DetailContent
         layoutId={selected}
         variants={items}
@@ -157,10 +160,15 @@ const WebDetail: React.FC<{
           />
         </VideoWrapper>
         <ASideSection>
+          <h1>프로젝트명</h1>
           <Title>{selectedData.title}</Title>
           {selectedData.description && (
-            <Description>{selectedData.description}</Description>
+            <>
+              <h1>설명</h1>
+              <Description>{selectedData.description}</Description>
+            </>
           )}
+          <h1>사용기술</h1>
           <SkillsContent>
             {selectedData.skills?.map((m) => (
               <SkillWrapper key={m} variants={skillVariants} whileHover="hover">

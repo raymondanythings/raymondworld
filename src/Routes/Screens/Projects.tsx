@@ -1,12 +1,14 @@
 import { AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Project from "../../Components/Project";
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ innerWidth: number }>`
+  /* max-width: ${(props) => props.innerWidth}px; */
   max-width: 900px;
   margin: 0 auto;
-  padding: 5% 0;
+  padding: 5% 50px;
 `;
 
 const ListBtn = styled.ul`
@@ -28,8 +30,22 @@ const Item = styled.li`
 
 const Proejcts = () => {
   const params = useParams();
+  const [width, setWidth] = useState(window.innerWidth * 0.8);
+  const handleResize = () => {
+    if (window.innerWidth * 0.8 > 900) {
+      setWidth(900);
+    } else {
+      setWidth(window.innerWidth * 0.8);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
-    <Wrapper>
+    <Wrapper innerWidth={width}>
       <ListBtn>
         <Link to="/content/app">
           <Item>App</Item>
