@@ -13,10 +13,12 @@
     "framer-motion": "^6.2.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
     "react-intersection-observer": "^8.33.1",
     "react-query": "^3.34.16",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "react-scroll": "^1.8.6",
     "react-tsparticles": "^1.42.1",
     "recoil": "^0.6.1",
     "styled-components": "^5.3.3",
@@ -49,6 +51,7 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3",
+    "@types/react-scroll": "^1.8.3",
     "@types/styled-components": "^5.1.23"
   }
 }

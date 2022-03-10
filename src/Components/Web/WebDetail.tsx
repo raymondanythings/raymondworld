@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
 import { IVideos } from "../../datas";
-import TopBar from "../TopBar";
+import TopBar from "../Content/TopBar";
 
 const Detail = styled(motion.div)`
   position: fixed;

@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { IVideos } from "../../datas";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-import TopBar from "../TopBar";
+import TopBar from "../Content/TopBar";
 
 const infoVariants = {
   hover: {
@@ -100,7 +100,6 @@ const WebVideo: React.FC<{
         controls.start("even");
       }
     }
-    console.log(data.title, "Render");
   }, [controls, inView, odd]);
   return (
     <WebContent

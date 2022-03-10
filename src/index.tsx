@@ -60,10 +60,10 @@ table {
 }
 body {
   font-weight: 300;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Roboto Mono','Source Sans Pro', sans-serif;
   line-height: 1.2;
   color: white;
-  background-color: ${(props) => props.theme.bgColor};
+  background-color: #000000;
   -ms-overflow-style: none;
   overflow-x: hidden;
 }

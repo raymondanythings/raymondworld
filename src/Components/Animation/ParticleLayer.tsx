@@ -33,7 +33,7 @@ const ParticleLayer = () => {
         },
         fullScreen: {
           enable: true,
-          zIndex: 1,
+          zIndex: -1,
         },
         detectRetina: true,
         fpsLimit: 120,

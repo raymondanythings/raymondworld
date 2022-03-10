@@ -45,14 +45,10 @@ const Application = () => {
   return (
     <>
       {appVideos.map((data) => (
-        <WebContent
-          variants={items}
-          odd={Boolean(data.id % 2 === 1)}
-          key={data.id}
-        >
+        <WebContent variants={items} odd={data.id % 2 === 1} key={data.id}>
           <VideoWrapper
             url={Boolean(data.url)}
-            odd={Boolean(data.id % 2 === 1)}
+            odd={data.id % 2 === 1}
             onClick={() => data.url && newWindow(data.url)}
           >
             <Video src={`/videos/${data.path}`} loop autoPlay muted />

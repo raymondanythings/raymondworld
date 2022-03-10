@@ -1,9 +1,11 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import Application from "./App/Application";
-import Web from "./Web/Web";
-import Python from "./Python/Python";
+import Application from "../App/Application";
+import Web from "../Web/Web";
+import Python from "../Python/Python";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
 
 const variants = {
   initial: {
@@ -12,7 +14,6 @@ const variants = {
   start: {
     opacity: 1,
     transition: {
-      delayChildren: 0.2,
       staggerChildren: 0.2,
     },
   },
@@ -30,16 +31,26 @@ const Wrapper = styled(motion.div)`
 
 const Project = () => {
   const params = useParams();
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+  useEffect(() => {
+    if (inView) {
+      controls.start("start");
+    } else {
+      controls.start("exit");
+    }
+  }, [controls, inView, params.slide]);
 
   return (
     <Wrapper
+      ref={ref}
       variants={variants}
       initial="initial"
-      animate="start"
+      animate={controls}
       exit="exit"
       key={params.slide}
     >
-      {params.slide === "web" && <Web />}
+      {(params.slide === "web" || !params.slide) && <Web />}
       {params.slide === "app" && <Application />}
       {params.slide === "python" && <Python />}
     </Wrapper>

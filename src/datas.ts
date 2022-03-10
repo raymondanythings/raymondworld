@@ -1,40 +1,48 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
+
+enum skillType {
+  fe = "Front-end",
+  be = "Back-end",
+  etc = "ETC",
+}
+
+type skills =
+  | "React"
+  | "React-query"
+  | "Express"
+  | "Sass"
+  | "Styled-components"
+  | "Redux"
+  | "Cloudflare"
+  | "EC2"
+  | "Cloudinary"
+  | "Nginx"
+  | "Docker"
+  | "MongoDB"
+  | "NodeJs"
+  | "Pug"
+  | "Web-assembly"
+  | "Ffmpeg"
+  | "Webpack"
+  | "S3"
+  | "Heroku"
+  | "Python"
+  | "Flask"
+  | "Requests"
+  | "BS4"
+  | "Numpy"
+  | "Pandas"
+  | "Chartjs"
+  | "Recoil"
+  | "React-dnd"
+  | "Typescript"
+  | "WebRTC"
+  | "SocketIo"
+  | "Framer-motion"
+  | "ES6";
 
 interface Iskills {
-  skills?: Array<
-    | "React"
-    | "React-query"
-    | "Express"
-    | "Sass"
-    | "Styled-components"
-    | "Redux"
-    | "Cloudflare"
-    | "EC2"
-    | "Cloudinary"
-    | "Nginx"
-    | "Docker"
-    | "MongoDB"
-    | "NodeJs"
-    | "Pug"
-    | "Web-assembly"
-    | "Ffmpeg"
-    | "Webpack"
-    | "S3"
-    | "Heroku"
-    | "Python"
-    | "Flask"
-    | "Requests"
-    | "BS4"
-    | "Numpy"
-    | "Pandas"
-    | "Chartjs"
-    | "Recoil"
-    | "React-dnd"
-    | "Typescript"
-    | "WebRTC"
-    | "SocketIo"
-    | "Framer-motion"
-  >;
+  skills?: Array<skills>;
 }
 export interface IVideos extends Iskills {
   id: number;
@@ -42,6 +50,14 @@ export interface IVideos extends Iskills {
   path: string;
   url?: string;
   description?: string;
+}
+
+export interface ISkillsState {
+  id: number;
+  name: string;
+  type: skillType;
+  level: number;
+  description: string;
 }
 
 export const webState = atom<IVideos[]>({
@@ -138,12 +154,12 @@ export const webState = atom<IVideos[]>({
 
 export const appVideos: IVideos[] = [
   {
-    id: 0,
+    id: 10,
     title: "Movie App",
     path: "imdb-app.webm",
   },
   {
-    id: 1,
+    id: 11,
     title: "Crypto App",
     path: "crypto-app.webm",
   },
@@ -151,13 +167,104 @@ export const appVideos: IVideos[] = [
 
 export const etcVideos: IVideos[] = [
   {
-    id: 0,
+    id: 20,
     title: "인공지능기반 자율주행RC카",
     path: "harber.webm",
   },
   {
-    id: 1,
+    id: 21,
     title: "Py2Jam",
     path: "py2jam.webm",
   },
 ];
+
+export const skillsState = atom<ISkillsState[]>({
+  key: "skillState",
+  default: [
+    {
+      id: 30,
+      type: skillType.fe,
+      name: "React",
+      level: 5,
+      description: "",
+    },
+    {
+      id: 31,
+      type: skillType.be,
+      name: "Express",
+      level: 4,
+      description: "",
+    },
+    {
+      id: 32,
+      type: skillType.fe,
+      name: "Redux",
+      level: 3,
+      description: "",
+    },
+    {
+      id: 33,
+      type: skillType.etc,
+      name: "Ubuntu",
+      level: 2,
+      description: "",
+    },
+    {
+      id: 34,
+      type: skillType.etc,
+      name: "Docker",
+      level: 3,
+      description: "",
+    },
+    {
+      id: 35,
+      type: skillType.be,
+      name: "mongoDB",
+      level: 3,
+      description: "",
+    },
+    {
+      id: 36,
+      type: skillType.fe,
+      name: "ES6",
+      level: 5,
+      description: "",
+    },
+    {
+      id: 37,
+      type: skillType.etc,
+      name: "Python",
+      level: 4,
+      description: "",
+    },
+    {
+      id: 38,
+      type: skillType.fe,
+      name: "Typescript",
+      level: 4,
+      description: "",
+    },
+  ],
+});
+
+export const frontSkillState = selector({
+  key: "frontSkillState",
+  get: ({ get }) => {
+    const data = get(skillsState);
+    return data.filter((m) => m.type === skillType.fe);
+  },
+});
+export const backSkillState = selector({
+  key: "backSkillState",
+  get: ({ get }) => {
+    const data = get(skillsState);
+    return data.filter((m) => m.type === skillType.be);
+  },
+});
+export const etcSkillState = selector({
+  key: "etcSkillState",
+  get: ({ get }) => {
+    const data = get(skillsState);
+    return data.filter((m) => m.type === skillType.etc);
+  },
+});
