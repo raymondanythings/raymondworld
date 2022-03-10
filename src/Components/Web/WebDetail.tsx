@@ -152,7 +152,7 @@ const WebDetail: React.FC<{
         <VideoWrapper url={Boolean(selectedData.url)}>
           <TopBar />
           <Video
-            src={`/videos/${selectedData.path}`}
+            src={`${process.env.PUBLIC_URL}/videos/${selectedData.path}`}
             clicked={true}
             loop
             autoPlay
@@ -172,7 +172,10 @@ const WebDetail: React.FC<{
           <SkillsContent>
             {selectedData.skills?.map((m) => (
               <SkillWrapper key={m} variants={skillVariants} whileHover="hover">
-                <Skills src={`/skills/${m}.png`} alt={m} />
+                <Skills
+                  src={`${process.env.PUBLIC_URL}/skills/${m}.png`}
+                  alt={m}
+                />
                 <SkillName variants={infoVariants}>{m}</SkillName>
               </SkillWrapper>
             ))}

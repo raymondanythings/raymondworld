@@ -51,7 +51,12 @@ const Application = () => {
             odd={data.id % 2 === 1}
             onClick={() => data.url && newWindow(data.url)}
           >
-            <Video src={`/videos/${data.path}`} loop autoPlay muted />
+            <Video
+              src={`${process.env.PUBLIC_URL}/videos/${data.path}`}
+              loop
+              autoPlay
+              muted
+            />
           </VideoWrapper>
           <ASideSection>
             <span>{data.title}</span>

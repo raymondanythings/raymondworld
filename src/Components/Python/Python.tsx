@@ -62,7 +62,12 @@ const Python = () => {
       {etcVideos.map((data) => (
         <WebContent variants={items} key={data.id}>
           <VideoWrapper url={Boolean(data.url)}>
-            <Video src={`/videos/${data.path}`} loop autoPlay muted />
+            <Video
+              src={`${process.env.PUBLIC_URL}/videos/${data.path}`}
+              loop
+              autoPlay
+              muted
+            />
           </VideoWrapper>
           <ASideSection>
             <span>{data.title}</span>

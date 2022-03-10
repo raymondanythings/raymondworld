@@ -1,3 +1,4 @@
+import { basename } from "path";
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -10,7 +11,7 @@ import Home from "./Routes/Home";
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="" element={<Home />}>
           <Route path="content/:slide" element={<Home />} />

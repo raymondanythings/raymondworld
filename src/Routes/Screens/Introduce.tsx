@@ -127,7 +127,10 @@ const Introduce = () => {
           <TitleOver>Anything.</TitleOver>
         </TitleWrapper>
         <Img variants={imageVariants}>
-          <img src="/images/profile2.png" alt="profile" />
+          <img
+            src={`${process.env.PUBLIC_URL}/images/profile2.png`}
+            alt="profile"
+          />
         </Img>
       </Content>
     </IntroWrapper>

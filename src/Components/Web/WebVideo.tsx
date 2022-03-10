@@ -111,21 +111,21 @@ const WebVideo: React.FC<{
       key={data.id}
       whileHover="hover"
     >
-      {/* <motion.div
-        style={{ border: "1px solid", borderRadius: "10px" }}
-        variants={items}
-      > */}
       <VideoWrapper
         url={Boolean(data.url)}
         onClick={() => setSelected(data.title)}
       >
         <TopBar />
-        <Video src={`/videos/${data.path}`} loop autoPlay muted />
+        <Video
+          src={`${process.env.PUBLIC_URL}/videos/${data.path}`}
+          loop
+          autoPlay
+          muted
+        />
       </VideoWrapper>
       <Info variants={infoVariants}>
         <h4>{data.title}</h4>
       </Info>
-      {/* </motion.div> */}
     </WebContent>
   );
 };
