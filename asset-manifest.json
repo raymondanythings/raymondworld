@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/raymondworld/static/css/main.fe2d8492.css",
-    "main.js": "/raymondworld/static/js/main.5af4589b.js",
+    "main.js": "/raymondworld/static/js/main.6ecafdb7.js",
     "static/js/787.5c0b2d12.chunk.js": "/raymondworld/static/js/787.5c0b2d12.chunk.js",
     "index.html": "/raymondworld/index.html",
-    "main.5af4589b.js.map": "/raymondworld/static/js/main.5af4589b.js.map",
+    "main.6ecafdb7.js.map": "/raymondworld/static/js/main.6ecafdb7.js.map",
     "787.5c0b2d12.chunk.js.map": "/raymondworld/static/js/787.5c0b2d12.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fe2d8492.css",
-    "static/js/main.5af4589b.js"
+    "static/js/main.6ecafdb7.js"
   ]
 }
