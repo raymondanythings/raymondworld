@@ -196,7 +196,7 @@ export const skillsState = atom<ISkillsState[]>({
     {
       id: 31,
       type: skillType.be,
-      name: "NodeJs",
+      name: "Nodejs",
       level: 4,
       description: "",
     },
@@ -224,7 +224,7 @@ export const skillsState = atom<ISkillsState[]>({
     {
       id: 35,
       type: skillType.be,
-      name: "mongoDB",
+      name: "MongoDB",
       level: 3,
       description: "",
     },
