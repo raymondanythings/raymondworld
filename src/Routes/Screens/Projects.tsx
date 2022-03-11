@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Project from "../../Components/Content/Project";
 import { Link as ScrollLink } from "react-scroll";
 import { RiArrowUpCircleFill } from "react-icons/ri";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
 
 const Wrapper = styled.div`
   max-width: 900px;
@@ -39,14 +41,14 @@ const Arrow = styled(RiArrowUpCircleFill)`
   height: 50px;
   cursor: pointer;
   filter: drop-shadow(0 0 0.7rem ${(props) => props.theme.boxColor});
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-out;
 `;
 
 const ScrollArrow = styled(ScrollLink)`
   & svg {
     transform: scale(0);
   }
-  &.active {
+  &.enable {
     & svg {
       transform: scale(1);
       &:hover {
@@ -58,6 +60,13 @@ const ScrollArrow = styled(ScrollLink)`
 `;
 
 const Proejcts = () => {
+  const [ref, inView] = useInView({
+    delay: 300,
+  });
+
+  useEffect(() => {
+    console.log(inView);
+  }, [inView]);
   return (
     <Wrapper id="top">
       <ListBtn>
@@ -74,8 +83,9 @@ const Proejcts = () => {
       <AnimatePresence exitBeforeEnter>
         <Project />
       </AnimatePresence>
-      <GoBack>
+      <GoBack ref={ref}>
         <ScrollArrow
+          className={inView ? "enable" : "disable"}
           to="top"
           spy={true}
           smooth={true}

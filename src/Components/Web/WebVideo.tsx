@@ -1,6 +1,6 @@
 import { motion, useAnimation } from "framer-motion";
 import React, { useEffect } from "react";
-import { IVideos } from "../../datas";
+import { IVideos, IWebVideos } from "../../datas";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import TopBar from "../Content/TopBar";
@@ -84,7 +84,7 @@ const Info = styled(motion.div)`
 `;
 
 const WebVideo: React.FC<{
-  data: IVideos;
+  data: IWebVideos;
   setSelected: (title: string) => void;
 }> = ({ data, setSelected }) => {
   const odd = data.id % 2 === 0;

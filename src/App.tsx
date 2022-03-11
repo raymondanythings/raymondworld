@@ -1,4 +1,3 @@
-import { basename } from "path";
 import React from "react";
 import {
   BrowserRouter as Router,

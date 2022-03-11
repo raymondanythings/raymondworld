@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
-import { IVideos } from "../../datas";
+import { IWebVideos } from "../../datas";
 import TopBar from "../Content/TopBar";
+import { ImEarth } from "react-icons/im";
 
 const Detail = styled(motion.div)`
   position: fixed;
@@ -85,6 +86,10 @@ const Description = styled.pre`
   margin: 10px 0;
 `;
 
+const Website = styled(ImEarth)`
+  cursor: pointer;
+`;
+
 const skillVariants = {
   hover: {
     scale: 1.2,
@@ -131,8 +136,10 @@ const infoVariants = {
 const WebDetail: React.FC<{
   selected: string;
   setSelected: React.Dispatch<React.SetStateAction<string>>;
-  selectedData: IVideos;
+  selectedData: IWebVideos;
 }> = ({ selected, setSelected, selectedData }) => {
+  const onClick = (url: string) => window.open(url);
+
   return (
     <Detail animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <Detail
@@ -180,6 +187,7 @@ const WebDetail: React.FC<{
               </SkillWrapper>
             ))}
           </SkillsContent>
+          <Website onClick={() => onClick(selectedData.url)} />
         </ASideSection>
       </DetailContent>
     </Detail>

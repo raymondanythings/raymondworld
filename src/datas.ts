@@ -39,7 +39,8 @@ type skills =
   | "WebRTC"
   | "SocketIo"
   | "Framer-motion"
-  | "ES6";
+  | "ES6"
+  | "React-Native";
 
 interface Iskills {
   skills?: Array<skills>;
@@ -52,6 +53,10 @@ export interface IVideos extends Iskills {
   description?: string;
 }
 
+export interface IWebVideos extends IVideos {
+  url: string;
+}
+
 export interface ISkillsState {
   id: number;
   name: string;
@@ -60,7 +65,7 @@ export interface ISkillsState {
   description: string;
 }
 
-export const webState = atom<IVideos[]>({
+export const webState = atom<IWebVideos[]>({
   key: "webState",
   default: [
     {
@@ -191,7 +196,7 @@ export const skillsState = atom<ISkillsState[]>({
     {
       id: 31,
       type: skillType.be,
-      name: "Express",
+      name: "NodeJs",
       level: 4,
       description: "",
     },
@@ -244,27 +249,63 @@ export const skillsState = atom<ISkillsState[]>({
       level: 4,
       description: "",
     },
+    {
+      id: 39,
+      type: skillType.be,
+      name: "Flask",
+      level: 3,
+      description: "",
+    },
+    {
+      id: 40,
+      type: skillType.fe,
+      name: "Recoil",
+      level: 3,
+      description: "",
+    },
+    {
+      id: 41,
+      type: skillType.fe,
+      name: "React-Native",
+      level: 3,
+      description: "",
+    },
   ],
 });
+
+function nameSort(a: ISkillsState, b: ISkillsState): number {
+  const nameA = a.name.toUpperCase();
+  const nameB = b.name.toUpperCase();
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+  return 0;
+}
 
 export const frontSkillState = selector({
   key: "frontSkillState",
   get: ({ get }) => {
     const data = get(skillsState);
-    return data.filter((m) => m.type === skillType.fe);
+    const filteredData = data.filter((m) => m.type === skillType.fe);
+    return filteredData.sort(nameSort);
   },
 });
 export const backSkillState = selector({
   key: "backSkillState",
   get: ({ get }) => {
     const data = get(skillsState);
-    return data.filter((m) => m.type === skillType.be);
+    const filteredData = data.filter((m) => m.type === skillType.be);
+    return filteredData.sort(nameSort);
   },
 });
 export const etcSkillState = selector({
   key: "etcSkillState",
   get: ({ get }) => {
     const data = get(skillsState);
-    return data.filter((m) => m.type === skillType.etc);
+    const filteredData = data.filter((m) => m.type === skillType.etc);
+    return filteredData.sort(nameSort);
   },
 });

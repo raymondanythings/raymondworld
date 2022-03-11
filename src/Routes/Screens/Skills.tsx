@@ -1,15 +1,24 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useRecoilValue } from "recoil";
 import { backSkillState, etcSkillState, frontSkillState } from "../../datas";
-import ProgressBar from "../../Components/Animation/ProgressBar";
+import SkillsCard from "../../Components/skiils/SkillsCard";
 
 const Grid = styled(motion.div)`
   display: grid;
   gap: 3rem;
-  /* grid-template-rows: repeat(3, minmax(fit-content, 1fr)); */
+`;
+
+const SkillTitle = styled(motion.div)`
+  width: 30%;
+  margin: 0 auto;
+  background-color: ${(props) => props.theme.sectionColor};
+  border-radius: 39% 61% 36% 64% / 67% 40% 60% 33%;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 600;
 `;
 
 const SkillWrapper = styled(motion.div)`
@@ -21,56 +30,17 @@ const SkillWrapper = styled(motion.div)`
 
 const WrapperTitle = styled.div`
   text-align: center;
-`;
-
-const Card = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Title = styled.div<{ text: string }>`
-  & span {
-    font-size: 2rem;
-    position: relative;
-    font-weight: 500;
-    background: linear-gradient(
-      to right,
-      ${(props) => props.theme.boxColor},
-      ${(props) => props.theme.sectionColor}
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    ::after {
-      content: "${(props) => props.text}";
-      background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0.6),
-        ${(props) => props.theme.boxColor}
-      );
-      white-space: nowrap;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      position: absolute;
-      top: 0.1rem;
-      left: 0.1rem;
-    }
-  }
-`;
-
-const Level = styled.div<{ level: number }>`
-  margin: 5px 0;
-  & span {
-    color: ${(props) =>
-      props.level === 2
-        ? "#EFFFFD"
-        : props.level === 3
-        ? "#B8FFF9"
-        : props.level === 4
-        ? "#85F4FF"
-        : props.level === 5
-        ? "#42C2FF"
-        : props.theme.sectionColor};
-  }
+  font-weight: 500;
+  font-size: 2rem;
+  width: fit-content;
+  margin: 0 auto;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1),
+    ${(props) => props.theme.boxColor}
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 const gridVariants = {
@@ -80,14 +50,12 @@ const gridVariants = {
   },
 };
 
-const cardVariants = {
+const titleVariants = {
   initial: {
-    rotateY: -95,
-    transformPerspective: 2500,
+    scale: 0,
   },
   start: {
-    rotateY: 0,
-    transformPerspective: 2500,
+    scale: 1,
   },
 };
 
@@ -107,28 +75,20 @@ const Skills = () => {
   }, [controls, inView]);
   return (
     <AnimatePresence>
-      <h1>SKills</h1>
       <Grid
         ref={ref}
         variants={gridVariants}
         initial="initial"
         animate={controls}
-        key={123123123}
+        key={"Skills"}
       >
+        <SkillTitle variants={titleVariants}>SKills</SkillTitle>
         <SkillWrapper>
           <WrapperTitle>
             <h1>Front-End</h1>
           </WrapperTitle>
           {frontSkills.map((data) => (
-            <Card key={data.name} variants={cardVariants}>
-              <Title text={data.name}>
-                <span>{data.name}</span>
-              </Title>
-              <Level level={data.level}>
-                Level : <span>{data.level}</span>
-              </Level>
-              <ProgressBar level={data.level} />
-            </Card>
+            <SkillsCard key={data.id} data={data} />
           ))}
         </SkillWrapper>
         <SkillWrapper>
@@ -136,15 +96,7 @@ const Skills = () => {
             <h1>Back-End</h1>
           </WrapperTitle>
           {backSkills.map((data) => (
-            <Card key={data.name} variants={cardVariants}>
-              <Title text={data.name}>
-                <span>{data.name}</span>
-              </Title>
-              <Level level={data.level}>
-                Level : <span>{data.level}</span>
-              </Level>
-              <ProgressBar level={data.level} />
-            </Card>
+            <SkillsCard key={data.id} data={data} />
           ))}
         </SkillWrapper>
         <SkillWrapper>
@@ -152,15 +104,7 @@ const Skills = () => {
             <h1>ETC</h1>
           </WrapperTitle>
           {etcSkills.map((data) => (
-            <Card key={data.name} variants={cardVariants}>
-              <Title text={data.name}>
-                <span>{data.name}</span>
-              </Title>
-              <Level level={data.level}>
-                Level : <span>{data.level}</span>
-              </Level>
-              <ProgressBar level={data.level} />
-            </Card>
+            <SkillsCard key={data.id} data={data} />
           ))}
         </SkillWrapper>
       </Grid>

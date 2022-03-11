@@ -6,12 +6,24 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100px;
   background-color: white;
-  color: black;
   bottom: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  & span {
+    color: black;
+  }
 `;
 
 const Footer = () => {
-  return <Wrapper>Footer</Wrapper>;
+  return (
+    <Wrapper>
+      <span>Footer 입니다</span>
+      <span>
+        &copy; {new Date().getFullYear()}. Raymondnaythings All Right Reserved.
+      </span>
+    </Wrapper>
+  );
 };
 
 export default Footer;

@@ -19,26 +19,23 @@ const PcBar = styled(motion.div)`
   top: 0;
 `;
 
-const pcVariants = {
-  initial: {
-    width: "0%",
-  },
-};
-
 const ProgressBar = ({ level }: IProgressBarProps) => {
+  const pcVariants = {
+    initial: {
+      width: "0%",
+    },
+    start: {
+      width: 100 * (level / 5) + "%",
+      transition: {
+        delay: 0.5,
+        duration: 2,
+      },
+    },
+  };
+
   return (
     <Bar pc={level}>
-      <PcBar
-        variants={pcVariants}
-        initial="initial"
-        animate={{
-          width: 100 * (level / 5) + "%",
-          transition: {
-            delay: 1,
-            duration: 3,
-          },
-        }}
-      />
+      <PcBar variants={pcVariants} />
     </Bar>
   );
 };
