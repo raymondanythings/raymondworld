@@ -69,8 +69,6 @@ const Skills = () => {
   useEffect(() => {
     if (inView) {
       controls.start("start");
-    } else {
-      controls.start("initial");
     }
   }, [controls, inView]);
   return (

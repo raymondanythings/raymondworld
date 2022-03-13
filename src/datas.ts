@@ -40,7 +40,8 @@ type skills =
   | "SocketIo"
   | "Framer-motion"
   | "ES6"
-  | "React-Native";
+  | "React-Native"
+  | "Firebase";
 
 interface Iskills {
   skills?: Array<skills>;
@@ -124,7 +125,7 @@ export const webState = atom<IWebVideos[]>({
       id: 3,
       title: "JobHub",
       path: "jobhub-web.webm",
-      url: "https://lastchallenge.raymondanything.repl.co/",
+      url: "https://raymondjobhub.herokuapp.com/",
       skills: ["Python", "Flask", "Requests", "BS4"],
     },
     {
@@ -153,6 +154,13 @@ export const webState = atom<IWebVideos[]>({
       path: "zoom-web.webm",
       url: "https://raymondnoom.herokuapp.com/",
       skills: ["WebRTC", "SocketIo", "Express", "NodeJs", "Pug"],
+    },
+    {
+      id: 7,
+      title: "Nwitter",
+      path: "nwitter-web.webm",
+      url: "https://raymondanythings.github.io/nwitter/",
+      skills: ["React", "Firebase"],
     },
   ],
 });

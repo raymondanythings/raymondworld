@@ -24,6 +24,7 @@ const DetailContent = styled(motion.div)`
   border: 1px solid;
   border-radius: 10px;
   background-color: ${(props) => props.theme.boxColor};
+  z-index: 1;
 `;
 
 const ASideSection = styled.aside`
@@ -141,7 +142,7 @@ const WebDetail: React.FC<{
   const onClick = (url: string) => window.open(url);
 
   return (
-    <Detail animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+    <Detail style={{ zIndex: 10 }}>
       <Detail
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}

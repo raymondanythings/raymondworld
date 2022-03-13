@@ -33,6 +33,8 @@ const Item = styled.li`
 const GoBack = styled(motion.div)`
   margin: 0 auto;
   width: fit-content;
+  position: relative;
+  z-index: 0;
 `;
 
 const Arrow = styled(RiArrowUpCircleFill)`
