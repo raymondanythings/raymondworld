@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import Footer from "../Components/Content/Footer";
 import Contact from "./Screens/Contact";
@@ -5,6 +6,7 @@ import Experience from "./Screens/Experience";
 import Introduce from "./Screens/Introduce";
 import Proejcts from "./Screens/Projects";
 import Skills from "./Screens/Skills";
+import { init } from "@emailjs/browser";
 
 const Wrapper = styled.div`
   position: relative;
@@ -13,6 +15,9 @@ const Wrapper = styled.div`
 `;
 
 const Home = () => {
+  useEffect(() => {
+    init(process.env.REACT_APP_USERID || "");
+  }, []);
   return (
     <Wrapper>
       <Introduce />

@@ -60,7 +60,7 @@ table {
 }
 body {
   font-weight: 300;
-  font-family: 'Roboto Mono','Source Sans Pro', sans-serif;
+  font-family: 'Pixeboy',"Dongen",'Roboto Mono', sans-serif;
   line-height: 1.2;
   color: white;
   background-color: #000000;
