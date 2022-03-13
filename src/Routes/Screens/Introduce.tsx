@@ -7,6 +7,7 @@ import { PageWrapper } from "../../lib/styled";
 
 const IntroWrapper = styled(PageWrapper)`
   margin-bottom: 10vh;
+  overflow-x: hidden;
 `;
 
 const TitleUnder = styled(motion.div)`

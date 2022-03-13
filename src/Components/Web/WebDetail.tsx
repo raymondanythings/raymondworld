@@ -35,9 +35,12 @@ const ASideSection = styled.aside`
   padding: 20px 0;
 `;
 
-const SkillsContent = styled.div`
+const SkillsContent = styled.div<{ len: boolean }>`
   display: flex;
   padding: 0px 50px;
+  overflow-x: scroll;
+  width: 100%;
+  justify-content: center;
 `;
 
 const SkillWrapper = styled(motion.div)`
@@ -177,7 +180,9 @@ const WebDetail: React.FC<{
             </>
           )}
           <h1>사용기술</h1>
-          <SkillsContent>
+          <SkillsContent
+            len={Boolean(selectedData.skills && selectedData.skills.length > 8)}
+          >
             {selectedData.skills?.map((m) => (
               <SkillWrapper key={m} variants={skillVariants} whileHover="hover">
                 <Skills
