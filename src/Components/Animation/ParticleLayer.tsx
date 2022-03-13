@@ -53,7 +53,7 @@ const ParticleLayer = () => {
             },
             onHover: {
               enable: true,
-              mode: "bounce",
+              mode: "bubble",
               parallax: {
                 enable: false,
                 force: 60,
