@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   max-width: 900px;
   margin: 0 auto;
   padding: 5% 50px;
+  margin-top: 20vh;
 `;
 
 const ListBtn = styled.ul`
@@ -66,9 +67,6 @@ const Proejcts = () => {
     delay: 300,
   });
 
-  useEffect(() => {
-    console.log(inView);
-  }, [inView]);
   return (
     <Wrapper id="top">
       <ListBtn>

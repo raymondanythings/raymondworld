@@ -10,9 +10,6 @@ const Wrapper = styled.div`
   position: relative;
   max-width: 900px;
   margin: 0 auto;
-  * {
-    color: ${(props) => props.theme.textColor};
-  }
 `;
 
 const Home = () => {
