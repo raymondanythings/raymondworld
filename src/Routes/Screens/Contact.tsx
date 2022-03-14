@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { PageWrapper } from "../../lib/styled";
 import { BsGithub } from "react-icons/bs";
 import { HiMail } from "react-icons/hi";
 import { AiFillInstagram } from "react-icons/ai";
@@ -8,21 +7,26 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
 import { ErrorMessage } from "@hookform/error-message";
 import TextareaAutosize from "react-textarea-autosize";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-const Wrapper = styled(PageWrapper)`
+const Wrapper = styled(motion.div)`
+  height: 100vh;
+  position: relative;
   padding: 0 10%;
   display: flex;
   flex-direction: column;
 `;
 
-const Content = styled.div`
+const Content = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 10% 0;
+  font-size: 2rem;
 `;
 
-const SendForm = styled.form`
+const SendForm = styled(motion.form)`
   border: 1px solid blue;
   padding: 5%;
   & label {
@@ -33,7 +37,7 @@ const SendForm = styled.form`
   }
 `;
 
-const InputWrapper = styled.div`
+const InputWrapper = styled(motion.div)`
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(2, minmax(80px, 1fr));
@@ -41,7 +45,7 @@ const InputWrapper = styled.div`
     font-family: "Pixeboy", "Dongen", "Roboto Mono", sans-serif;
   }
 `;
-const Links = styled.div`
+const Links = styled(motion.div)`
   display: flex;
   justify-content: space-around;
   margin-top: 100px;
@@ -95,7 +99,7 @@ const ErrorMsg = styled.h4`
   font-size: 0.7rem;
 `;
 
-const ContentBox = styled.div`
+const ContentBox = styled(motion.div)`
   width: 100%;
   margin: auto 0;
 `;
@@ -105,6 +109,21 @@ interface IInputs {
   name: string;
   message: string;
 }
+
+const wrapperVariants = {
+  initial: {
+    y: 100,
+    opacity: 0,
+  },
+  start: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      delayChildren: 0.1,
+      staggerChildren: 0.1,
+    },
+  },
+};
 
 const Contact = () => {
   const {
@@ -134,11 +153,26 @@ const Contact = () => {
 
     reset();
   };
-  console.log(errors);
+
+  const [ref, inView] = useInView({ delay: 300 });
+  const controls = useAnimation();
+  useEffect(() => {
+    if (inView) {
+      controls.start("start");
+    } else {
+      controls.start("initial");
+    }
+  }, [controls, inView]);
+
   return (
-    <Wrapper>
-      <Content>CONTACT ME!</Content>
-      <SendForm onSubmit={handleSubmit(onSubmit)}>
+    <Wrapper
+      ref={ref}
+      initial="initial"
+      animate={controls}
+      variants={wrapperVariants}
+    >
+      <Content variants={wrapperVariants}>CONTACT ME!</Content>
+      <SendForm onSubmit={handleSubmit(onSubmit)} variants={wrapperVariants}>
         <InputWrapper>
           <input
             placeholder="Email"
@@ -169,7 +203,7 @@ const Contact = () => {
           <SendBtn type="submit" value="Send Email" />
         </div>
       </SendForm>
-      <ContentBox>
+      <ContentBox variants={wrapperVariants}>
         <Content>Links</Content>
         <Links>
           <Mail onClick={() => openLink("mailto:raymondnaything@gmail.com")} />

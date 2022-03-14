@@ -1,6 +1,7 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+
 import styled from "styled-components";
 import ParticleLayer from "../../Components/Animation/ParticleLayer";
 import { PageWrapper } from "../../lib/styled";
@@ -18,11 +19,14 @@ const TitleUnder = styled(motion.div)`
   width: fit-content;
   ::after {
     color: ${(props) => props.theme.sectionColor};
-    /* -webkit-text-stroke: 0.1rem rgb(0, 26, 255); */
+
     content: "Raymond";
     position: absolute;
     top: -0.3rem;
     left: -0.3rem;
+  }
+  @media screen and (max-width: 420px) {
+    font-size: 5rem;
   }
 `;
 const TitleOver = styled(motion.div)`
@@ -32,12 +36,14 @@ const TitleOver = styled(motion.div)`
   position: relative;
 
   ::after {
-    /* -webkit-text-stroke: 0.1rem rgb(0, 26, 255); */
     color: ${(props) => props.theme.sectionColor};
     content: "Anything.";
     position: absolute;
     top: -0.3rem;
     left: -0.3rem;
+  }
+  @media screen and (max-width: 420px) {
+    font-size: 5rem;
   }
 `;
 const TitleWrapper = styled(motion.div)`
@@ -53,7 +59,9 @@ const Content = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* flex-wrap: wrap; */
+  @media screen and (max-width: 420px) {
+    flex-direction: column;
+  }
 `;
 
 const Img = styled(motion.div)`
@@ -107,6 +115,7 @@ const imageVariants = {
 const Introduce = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
+
   useEffect(() => {
     if (inView) {
       controls.start("start");

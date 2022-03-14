@@ -1,6 +1,6 @@
 import { motion, useAnimation } from "framer-motion";
 import React, { useEffect } from "react";
-import { IVideos, IWebVideos } from "../../datas";
+import { IWebVideos } from "../../datas";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import TopBar from "../Content/TopBar";

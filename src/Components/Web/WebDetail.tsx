@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { IWebVideos } from "../../datas";
 import TopBar from "../Content/TopBar";
 import { ImEarth } from "react-icons/im";
+import { useMediaQuery } from "react-responsive";
 
 const Detail = styled(motion.div)`
   position: fixed;
@@ -32,7 +33,7 @@ const ASideSection = styled.aside`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0;
+  padding: 20px 10px;
 `;
 
 const SkillsContent = styled.div<{ len: boolean }>`
@@ -41,6 +42,10 @@ const SkillsContent = styled.div<{ len: boolean }>`
   overflow-x: scroll;
   width: 100%;
   justify-content: center;
+  @media screen and (max-width: 420px) {
+    flex-wrap: wrap;
+    padding: 0;
+  }
 `;
 
 const SkillWrapper = styled(motion.div)`
@@ -58,6 +63,11 @@ const Skills = styled(motion.img)`
   background-color: ${(props) => props.theme.textColor};
   border-radius: 10px;
   margin: 0px 10px;
+  @media screen and (max-width: 420px) {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+  }
 `;
 
 const SkillName = styled(motion.div)`
@@ -88,6 +98,8 @@ const Title = styled.h1`
 const Description = styled.pre`
   margin-bottom: 20px;
   margin: 10px 0;
+  text-align: center;
+  white-space: normal;
 `;
 
 const Website = styled(ImEarth)`
@@ -143,6 +155,9 @@ const WebDetail: React.FC<{
   selectedData: IWebVideos;
 }> = ({ selected, setSelected, selectedData }) => {
   const onClick = (url: string) => window.open(url);
+  const isMobile = useMediaQuery({
+    query: "(max-width : 420px)",
+  });
 
   return (
     <Detail style={{ zIndex: 10 }}>
@@ -189,7 +204,9 @@ const WebDetail: React.FC<{
                   src={`${process.env.PUBLIC_URL}/skills/${m}.png`}
                   alt={m}
                 />
-                <SkillName variants={infoVariants}>{m}</SkillName>
+                {!isMobile && (
+                  <SkillName variants={infoVariants}>{m}</SkillName>
+                )}
               </SkillWrapper>
             ))}
           </SkillsContent>

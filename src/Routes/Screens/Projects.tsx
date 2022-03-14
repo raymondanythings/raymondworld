@@ -1,16 +1,15 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Project from "../../Components/Content/Project";
 import { Link as ScrollLink } from "react-scroll";
 import { RiArrowUpCircleFill } from "react-icons/ri";
 import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
 
 const Wrapper = styled.div`
   max-width: 900px;
   margin: 0 auto;
-  padding: 5% 50px;
+  padding: 5% 0;
   margin-top: 20vh;
 `;
 
@@ -20,15 +19,24 @@ const ListBtn = styled.ul`
   margin-bottom: 50px;
   display: flex;
   justify-content: space-around;
-  border: 1px solid white;
+  border: 1px solid blue;
+  border-radius: 2rem;
   padding: 10px 0px;
 `;
 
-const Item = styled.li`
+const Item = styled.button<{ currentParam: boolean }>`
   color: white;
-  padding: 5px 15px;
-  background-color: blue;
-  border-radius: 5px;
+  border: ${(props) =>
+    !props.currentParam
+      ? `1px solid ${props.theme.boxColor}`
+      : "1px solid transparent"};
+  border-radius: 10px;
+  background-color: ${(props) =>
+    props.currentParam ? props.theme.sectionColor : "transparent"};
+  transition: all 0.2s ease-out;
+  &:hover {
+    background-color: ${(props) => props.theme.sectionColor};
+  }
 `;
 
 const GoBack = styled(motion.div)`
@@ -66,18 +74,19 @@ const Proejcts = () => {
   const [ref, inView] = useInView({
     delay: 300,
   });
+  const { slide } = useParams();
 
   return (
     <Wrapper id="top">
       <ListBtn>
         <Link to="/content/web">
-          <Item>Web</Item>
+          <Item currentParam={slide === null || slide === "web"}>Web</Item>
         </Link>
         <Link to="/content/app">
-          <Item>App</Item>
+          <Item currentParam={slide === "app"}>App</Item>
         </Link>
         <Link to="/content/python">
-          <Item>Python</Item>
+          <Item currentParam={slide === "python"}>Python</Item>
         </Link>
       </ListBtn>
       <AnimatePresence exitBeforeEnter>
