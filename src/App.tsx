@@ -15,7 +15,7 @@ function App() {
         <Route path="" element={<Home />}>
           <Route path="content/:slide" element={<Home />} />
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="" />} />
       </Routes>
     </Router>
   );
