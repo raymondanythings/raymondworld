@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
+  margin-top: 100px;
 `;
 
 const Footer = () => {

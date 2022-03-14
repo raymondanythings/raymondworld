@@ -11,7 +11,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const Wrapper = styled(motion.div)`
-  height: 100vh;
+  /* height: 100vh; */
   position: relative;
   padding: 0 10%;
   display: flex;
