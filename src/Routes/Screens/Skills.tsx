@@ -12,13 +12,26 @@ const Grid = styled(motion.div)`
 `;
 
 const SkillTitle = styled(motion.div)`
-  width: 30%;
+  width: fit-content;
+  padding: 1rem;
   margin: 0 auto;
   background-color: ${(props) => props.theme.sectionColor};
   border-radius: 39% 61% 36% 64% / 67% 40% 60% 33%;
-  text-align: center;
+`;
+
+const LayeredTitle = styled(motion.div)`
   font-size: 3rem;
   font-weight: 600;
+  text-align: center;
+  position: relative;
+
+  ::after {
+    color: ${(props) => props.theme.layeredColor};
+    content: "SKILLS";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+  }
 `;
 
 const SkillWrapper = styled(motion.div)`
@@ -80,7 +93,9 @@ const Skills = () => {
         animate={controls}
         key={"Skills"}
       >
-        <SkillTitle variants={titleVariants}>SKills</SkillTitle>
+        <SkillTitle variants={titleVariants}>
+          <LayeredTitle>SKills</LayeredTitle>
+        </SkillTitle>
         <SkillWrapper>
           <WrapperTitle>
             <h1>Front-End</h1>

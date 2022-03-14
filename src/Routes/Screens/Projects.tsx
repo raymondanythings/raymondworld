@@ -26,16 +26,37 @@ const ListBtn = styled.ul`
 
 const Item = styled.button<{ currentParam: boolean }>`
   color: white;
+  border-radius: ${(props) =>
+    props.currentParam
+      ? "39% 61% 36% 64% / 67% 40% 60% 33%"
+      : "78% 22% 85% 15% / 45% 47% 53% 55% "};
   border: ${(props) =>
     !props.currentParam
       ? `1px solid ${props.theme.boxColor}`
       : "1px solid transparent"};
-  border-radius: 10px;
   background-color: ${(props) =>
     props.currentParam ? props.theme.sectionColor : "transparent"};
-  transition: all 0.2s ease-out;
+  padding: 1rem;
+  transition: all 0.4s ease-out;
   &:hover {
     background-color: ${(props) => props.theme.sectionColor};
+  }
+`;
+
+const LayeredBtn = styled.div<{ param: string }>`
+  font-weight: 600;
+  text-align: center;
+  position: relative;
+  font-size: 3rem;
+  font-family: "Pixeboy";
+  color: transparent;
+  -webkit-text-stroke: 1px ${(props) => props.theme.layeredColor};
+  ::after {
+    color: white;
+    content: "${(props) => props.param}";
+    position: absolute;
+    top: -2px;
+    left: -2px;
   }
 `;
 
@@ -80,13 +101,19 @@ const Proejcts = () => {
     <Wrapper id="top">
       <ListBtn>
         <Link to="/content/web">
-          <Item currentParam={slide === null || slide === "web"}>Web</Item>
+          <Item currentParam={slide === null || slide === "web"}>
+            <LayeredBtn param={"Web"}>Web</LayeredBtn>
+          </Item>
         </Link>
         <Link to="/content/app">
-          <Item currentParam={slide === "app"}>App</Item>
+          <Item currentParam={slide === "app"}>
+            <LayeredBtn param={"App"}>App</LayeredBtn>
+          </Item>
         </Link>
         <Link to="/content/python">
-          <Item currentParam={slide === "python"}>Python</Item>
+          <Item currentParam={slide === "python"}>
+            <LayeredBtn param={"Python"}>Python</LayeredBtn>
+          </Item>
         </Link>
       </ListBtn>
       <AnimatePresence exitBeforeEnter>

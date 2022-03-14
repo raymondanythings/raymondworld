@@ -7,6 +7,7 @@ declare module "styled-components" {
     sectionColor: string;
     textColor: string;
     shadow: string;
+    layeredColor: string;
     circles: {
       red: string;
       yellow: string;

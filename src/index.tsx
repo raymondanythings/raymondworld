@@ -57,12 +57,13 @@ table {
 }
 * {
   box-sizing: border-box;
+  font-family: 'Pixeboy',"Dongen",'Roboto Mono', sans-serif;
 }
 body {
   font-weight: 300;
-  font-family: 'Pixeboy',"Dongen",'Roboto Mono', sans-serif;
   line-height: 1.2;
   color: white;
+  font-family: 'Pixeboy',"Dongen",'Roboto Mono', sans-serif;
   background-color: #000000;
   -ms-overflow-style: none;
   overflow-x: hidden;
