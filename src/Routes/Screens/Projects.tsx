@@ -54,7 +54,6 @@ const LayeredBtn = styled.div<{ param: string }>`
   text-align: center;
   position: relative;
   font-size: 3rem;
-  font-family: "Pixeboy";
   color: transparent;
   -webkit-text-stroke: 1px ${(props) => props.theme.layeredColor};
   @media screen and (max-width: 420px) {
@@ -110,7 +109,7 @@ const Proejcts = () => {
     <Wrapper id="top">
       <ListBtn>
         <Link to="/content/web">
-          <Item currentParam={slide === null || slide === "web"}>
+          <Item currentParam={!slide || slide === "web"}>
             <LayeredBtn param={"Web"}>Web</LayeredBtn>
           </Item>
         </Link>
