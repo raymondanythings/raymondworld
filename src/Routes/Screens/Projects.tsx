@@ -19,12 +19,15 @@ const ListBtn = styled.ul`
   margin-bottom: 50px;
   display: flex;
   justify-content: space-around;
-  border: 1px solid blue;
   border-radius: 2rem;
   padding: 10px 0px;
+  @media screen and (max-width: 420px) {
+    width: 100%;
+  }
 `;
 
 const Item = styled.button<{ currentParam: boolean }>`
+  cursor: pointer;
   color: white;
   border-radius: ${(props) =>
     props.currentParam
@@ -37,6 +40,9 @@ const Item = styled.button<{ currentParam: boolean }>`
   background-color: ${(props) =>
     props.currentParam ? props.theme.sectionColor : "transparent"};
   padding: 1rem;
+  @media screen and (max-width: 420px) {
+    width: fit-content;
+  }
   transition: all 0.4s ease-out;
   &:hover {
     background-color: ${(props) => props.theme.sectionColor};
@@ -51,6 +57,9 @@ const LayeredBtn = styled.div<{ param: string }>`
   font-family: "Pixeboy";
   color: transparent;
   -webkit-text-stroke: 1px ${(props) => props.theme.layeredColor};
+  @media screen and (max-width: 420px) {
+    font-size: 2rem;
+  }
   ::after {
     color: white;
     content: "${(props) => props.param}";
