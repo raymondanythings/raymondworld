@@ -2,7 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;1,500;1,600;1,700&display=swap");
 @font-face {
   font-family: "Dongen";
-  src: url("./lib/Font/DungGeunMo.ttf");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff")
+    format("woff");
   font-style: normal;
   font-weight: normal;
 }
