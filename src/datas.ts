@@ -89,6 +89,8 @@ export const webState = atom<IWebVideos[]>({
       title: "Voyager",
       path: "voyager-web-norack.webm",
       url: "https://voyager.or.kr",
+      description:
+        "오늘의 감정을 테스트하고 기록하여 유저들과 공유하는 서비스 입니다.",
       skills: [
         "React",
         "Express",
@@ -168,13 +170,15 @@ export const webState = atom<IWebVideos[]>({
 export const appVideos: IVideos[] = [
   {
     id: 10,
-    title: "Movie App",
+    title: "Native Movies",
     path: "imdb-app.webm",
+    description: "Native Movies",
   },
   {
     id: 11,
-    title: "Crypto App",
+    title: "Crypto Tracker",
     path: "crypto-app.webm",
+    description: "Crypto Tracker",
   },
 ];
 

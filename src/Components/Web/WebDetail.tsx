@@ -9,9 +9,9 @@ import { useMediaQuery } from "react-responsive";
 const Detail = styled(motion.div)`
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  left: 0;
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
@@ -19,13 +19,15 @@ const DetailContent = styled(motion.div)`
   margin: 8% 0px;
   max-width: 1000px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
   border: 1px solid;
   border-radius: 10px;
   background-color: ${(props) => props.theme.boxColor};
-  z-index: 1;
+  z-index: 100;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  height: 100%;
 `;
 
 const ASideSection = styled.aside`
@@ -160,7 +162,7 @@ const WebDetail: React.FC<{
   });
 
   return (
-    <Detail style={{ zIndex: 10 }}>
+    <Detail style={{ zIndex: 10, padding: "5% 0" }}>
       <Detail
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
