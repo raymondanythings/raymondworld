@@ -5,6 +5,7 @@ import { IWebVideos } from "../../datas";
 import TopBar from "../Content/TopBar";
 import { ImEarth } from "react-icons/im";
 import { useMediaQuery } from "react-responsive";
+import SkillImg from "../skiils/SkillImg";
 
 const Detail = styled(motion.div)`
   position: fixed;
@@ -50,34 +51,6 @@ const SkillsContent = styled.div<{ len: boolean }>`
   }
 `;
 
-const SkillWrapper = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10px 0;
-  width: 70px;
-`;
-
-const Skills = styled(motion.img)`
-  width: 50px;
-  height: 50px;
-  padding: 2px;
-  background-color: ${(props) => props.theme.textColor};
-  border-radius: 10px;
-  margin: 0px 10px;
-  @media screen and (max-width: 420px) {
-    width: 30px;
-    height: 30px;
-    margin: 0;
-  }
-`;
-
-const SkillName = styled(motion.div)`
-  opacity: 0;
-  text-align: center;
-  font-size: 6px;
-`;
-
 const VideoWrapper = styled.div<{ url: boolean }>`
   position: relative;
   width: 100%;
@@ -108,16 +81,6 @@ const Website = styled(ImEarth)`
   cursor: pointer;
 `;
 
-const skillVariants = {
-  hover: {
-    scale: 1.2,
-    transition: {
-      duration: 0.3,
-      type: "tween",
-    },
-  },
-};
-
 const items = {
   initial: {
     opacity: 0,
@@ -141,25 +104,12 @@ const items = {
   },
 };
 
-const infoVariants = {
-  hover: {
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      type: "tween",
-    },
-  },
-};
-
 const WebDetail: React.FC<{
   selected: string;
   setSelected: React.Dispatch<React.SetStateAction<string>>;
   selectedData: IWebVideos;
 }> = ({ selected, setSelected, selectedData }) => {
   const onClick = (url: string) => window.open(url);
-  const isMobile = useMediaQuery({
-    query: "(max-width : 420px)",
-  });
 
   return (
     <Detail style={{ zIndex: 10, padding: "5% 0" }}>
@@ -201,15 +151,7 @@ const WebDetail: React.FC<{
             len={Boolean(selectedData.skills && selectedData.skills.length > 8)}
           >
             {selectedData.skills?.map((m) => (
-              <SkillWrapper key={m} variants={skillVariants} whileHover="hover">
-                <Skills
-                  src={`${process.env.PUBLIC_URL}/skills/${m}.png`}
-                  alt={m}
-                />
-                {!isMobile && (
-                  <SkillName variants={infoVariants}>{m}</SkillName>
-                )}
-              </SkillWrapper>
+              <SkillImg m={m} />
             ))}
           </SkillsContent>
           <Website onClick={() => onClick(selectedData.url)} />

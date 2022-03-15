@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 import { IVideos } from "../../datas";
+import SkillImg from "../skiils/SkillImg";
 
 const items = {
   initial: {
@@ -52,6 +53,18 @@ const AppTitle = styled.span<{ isMobile: boolean }>`
   font-weight: 500;
 `;
 
+const SkillsContent = styled.div`
+  display: flex;
+  padding: 0px 50px;
+  overflow-x: scroll;
+  width: 100%;
+  justify-content: center;
+  @media screen and (max-width: 420px) {
+    flex-wrap: wrap;
+    padding: 0;
+  }
+`;
+
 const ApplicationDetail: FC<{ data: IVideos }> = ({ data }) => {
   const newWindow = (url: string) => window.open(url, "_blank");
   const [ref, inView] = useInView();
@@ -85,6 +98,11 @@ const ApplicationDetail: FC<{ data: IVideos }> = ({ data }) => {
       <ASideSection>
         <AppTitle isMobile={isMobile}>{data.title}</AppTitle>
         <div>{data.description}</div>
+        <SkillsContent>
+          {data.skills?.map((m) => (
+            <SkillImg m={m} />
+          ))}
+        </SkillsContent>
       </ASideSection>
     </WebContent>
   );

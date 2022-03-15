@@ -41,7 +41,8 @@ type skills =
   | "Framer-motion"
   | "ES6"
   | "React-Native"
-  | "Firebase";
+  | "Firebase"
+  | "Expo";
 
 interface Iskills {
   skills?: Array<skills>;
@@ -173,12 +174,20 @@ export const appVideos: IVideos[] = [
     title: "Native Movies",
     path: "imdb-app.webm",
     description: "Native Movies",
+    skills: [
+      "React-Native",
+      "Expo",
+      "React-query",
+      "Styled-components",
+      "Typescript",
+    ],
   },
   {
     id: 11,
     title: "Crypto Tracker",
     path: "crypto-app.webm",
     description: "Crypto Tracker",
+    skills: ["React-Native", "Expo", "React-query", "Styled-components"],
   },
 ];
 
