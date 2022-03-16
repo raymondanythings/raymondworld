@@ -3,15 +3,15 @@ import React, { FC } from "react";
 import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 
-const SkillWrapper = styled(motion.div)`
+const SkillWrapper = styled(motion.div)<{ page: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px 0;
-  width: 70px;
+  margin: ${(props) => (props.page === "app" ? "3px" : "10px 0")};
+  ${(props) => (props.page === "app" ? null : "width: 70px")};
 `;
 
-const Skills = styled(motion.img)`
+const Skills = styled(motion.img)<{ page: string }>`
   width: 50px;
   height: 50px;
   padding: 2px;
@@ -19,8 +19,8 @@ const Skills = styled(motion.img)`
   border-radius: 10px;
   margin: 0px 10px;
   @media screen and (max-width: 420px) {
-    width: 30px;
-    height: 30px;
+    width: ${(props) => (props.page === "app" ? "20px" : "50px")};
+    height: ${(props) => (props.page === "app" ? "20px" : "50px")};
     margin: 0;
   }
 `;
@@ -51,14 +51,23 @@ const skillVariants = {
   },
 };
 
-const SkillImg: FC<{ m: string }> = ({ m }) => {
+const SkillImg: FC<{ m: string; page: string }> = ({ m, page }) => {
   const isMobile = useMediaQuery({
     query: "(max-width : 420px)",
   });
 
   return (
-    <SkillWrapper key={m} variants={skillVariants} whileHover="hover">
-      <Skills src={`${process.env.PUBLIC_URL}/skills/${m}.png`} alt={m} />
+    <SkillWrapper
+      key={m}
+      variants={skillVariants}
+      whileHover="hover"
+      page={page}
+    >
+      <Skills
+        src={`${process.env.PUBLIC_URL}/skills/${m}.png`}
+        alt={m}
+        page={page}
+      />
 
       {!isMobile && <SkillName variants={infoVariants}>{m}</SkillName>}
     </SkillWrapper>

@@ -1,14 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { BsGithub } from "react-icons/bs";
 import { HiMail } from "react-icons/hi";
 import { AiFillInstagram } from "react-icons/ai";
 import { SubmitHandler, useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
-import { ErrorMessage } from "@hookform/error-message";
 import TextareaAutosize from "react-textarea-autosize";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import confetti from "canvas-confetti";
+import { useState } from "react";
+import ErrorMsg from "../../Components/Animation/ErrorMsg";
+
+const confettiSettings = {
+  particleCount: 50,
+  spread: 50,
+};
 
 const Wrapper = styled(motion.div)`
   /* height: 100vh; */
@@ -29,11 +36,9 @@ const Content = styled(motion.div)`
 const SendForm = styled(motion.form)`
   border: 1px solid blue;
   padding: 5%;
+  padding-bottom: 2%;
   & label {
     color: white;
-  }
-  & * {
-    color: black;
   }
 `;
 
@@ -56,6 +61,7 @@ const SendBtn = styled.input`
   border: none;
   color: white;
   cursor: pointer;
+  width: fit-content;
   transition: all 0.2s ease-out;
   &:hover {
     border-radius: 3px;
@@ -94,20 +100,27 @@ const Instagram = styled(AiFillInstagram)`
   }
 `;
 
-const ErrorMsg = styled.h4`
-  color: red;
-  font-size: 0.7rem;
-`;
-
 const ContentBox = styled(motion.div)`
   width: 100%;
   margin: auto 0;
 `;
 
+const FormCol = styled.div`
+  grid-column: 1 / -1;
+  display: flex;
+`;
+
+const Colume = styled.div`
+  width: 50%;
+  & input {
+    width: 95%;
+  }
+`;
+
 interface IInputs {
   email: string;
-  name: string;
-  message: string;
+  Iname: string;
+  Imessage: string;
 }
 
 const wrapperVariants = {
@@ -125,7 +138,21 @@ const wrapperVariants = {
   },
 };
 
+const successVariants = {
+  initial: {
+    y: 10,
+    opacity: 0,
+  },
+  start: {
+    y: 3,
+    opacity: 1,
+  },
+};
+
 const Contact = () => {
+  const btnRef = useRef<HTMLInputElement>(null);
+  const [ok, setOk] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -137,8 +164,6 @@ const Contact = () => {
     const serviceId = process.env.REACT_APP_SERVICEID || "";
     const templateId = process.env.REACT_APP_TEMPLATEID || "";
     const userId = process.env.REACT_APP_USERID || "";
-    console.log(serviceId, templateId, userId);
-    console.log(data);
     try {
       const result = await emailjs.send(
         serviceId,
@@ -146,7 +171,13 @@ const Contact = () => {
         { ...data },
         userId
       );
-      console.log(result);
+      if (result.status === 200) {
+        confetti({
+          origin: { x: 0.5, y: 0.6 },
+          ...confettiSettings,
+        });
+        setOk(true);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -154,15 +185,38 @@ const Contact = () => {
     reset();
   };
 
+  // <- Click Event Confetti ->
+
+  // const handleClick = useCallback(
+  //   (event: MouseEvent) => {
+  //     const x = event.clientX / window.innerWidth;
+  //     const y = event.clientY / window.innerHeight;
+  //     confetti({
+  //       origin: { x: 0.5, y: 0.6 },
+  //       ...confettiSettings,
+  //     });
+  //   },
+  //   []
+  // );
+
   const [ref, inView] = useInView({ delay: 300 });
   const controls = useAnimation();
+  const success = useAnimation();
   useEffect(() => {
+    // success.start("initial");
+    if (ok) {
+      success.start("start");
+      setTimeout(() => {
+        success.start("initial");
+        setOk(false);
+      }, 2000);
+    }
     if (inView) {
       controls.start("start");
     } else {
       controls.start("initial");
     }
-  }, [controls, inView]);
+  }, [controls, success, inView, ok]);
 
   return (
     <Wrapper
@@ -175,15 +229,32 @@ const Contact = () => {
       <SendForm onSubmit={handleSubmit(onSubmit)} variants={wrapperVariants}>
         <InputWrapper>
           <input
+            autoComplete="off"
             placeholder="Email"
-            {...register("email", { required: "Email is required." })}
+            {...register("email", {
+              required: "필수입력 항목입니다.",
+              pattern: {
+                value:
+                  /^([0-9a-zA-Z_.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/,
+                message: "이메일이 유효하지 않습니다.",
+              },
+            })}
           />
-          <ErrorMessage errors={errors} name="email" as={ErrorMsg} />
+
           <input
+            autoComplete="off"
             placeholder="Name"
-            {...register("name", { required: "Name is required." })}
+            {...register("Iname", { required: "필수입력 항목입니다." })}
           />
-          <ErrorMessage errors={errors} name="name" as={ErrorMsg} />
+
+          <FormCol>
+            <Colume>
+              <ErrorMsg errors={errors} name="email" />
+            </Colume>
+            <Colume>
+              <ErrorMsg errors={errors} name="Iname" />
+            </Colume>
+          </FormCol>
 
           <TextareaAutosize
             cacheMeasurements
@@ -193,14 +264,29 @@ const Contact = () => {
               resize: "none",
             }}
             placeholder="Message"
-            {...register("message", { required: "Message is required." })}
+            {...register("Imessage", { required: "필수입력 항목입니다." })}
           />
-          <ErrorMessage errors={errors} name="message" as={ErrorMsg} />
+          <ErrorMsg errors={errors} name="Imessage" />
         </InputWrapper>
         <div
-          style={{ width: "fit-content", margin: "0 auto", marginTop: "10px" }}
+          style={{
+            width: "fit-content",
+            margin: "10px auto 0",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          <SendBtn type="submit" value="Send Email" />
+          <SendBtn ref={btnRef} type="submit" value="Send Email" />
+
+          <motion.div
+            variants={successVariants}
+            initial="initial"
+            animate={success}
+            style={{ color: "white", textAlign: "center", marginTop: "10px" }}
+          >
+            메일전송완료!
+          </motion.div>
         </div>
       </SendForm>
       <ContentBox variants={wrapperVariants}>

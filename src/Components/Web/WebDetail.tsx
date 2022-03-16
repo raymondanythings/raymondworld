@@ -16,6 +16,12 @@ const Detail = styled(motion.div)`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
+const DetailWrapper = styled(Detail)<{ isMobile: boolean }>`
+  padding: ${(props) => (props.isMobile ? "20% 5%" : "5% 0")};
+`;
+
+const Overlay = styled(Detail)``;
+
 const DetailContent = styled(motion.div)`
   margin: 8% 0px;
   max-width: 1000px;
@@ -25,10 +31,10 @@ const DetailContent = styled(motion.div)`
   background-color: ${(props) => props.theme.boxColor};
   z-index: 100;
   overflow: scroll;
+  height: 100%;
   &::-webkit-scrollbar {
     display: none;
   }
-  height: 100%;
 `;
 
 const ASideSection = styled.aside`
@@ -110,15 +116,18 @@ const WebDetail: React.FC<{
   selectedData: IWebVideos;
 }> = ({ selected, setSelected, selectedData }) => {
   const onClick = (url: string) => window.open(url);
+  const isMobile = useMediaQuery({
+    query: "(max-width : 420px)",
+  });
 
   return (
-    <Detail style={{ zIndex: 10, padding: "5% 0" }}>
-      <Detail
+    <DetailWrapper style={{ zIndex: 10 }} isMobile={isMobile}>
+      <Overlay
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={() => setSelected("")}
         style={{ zIndex: -1 }}
-      ></Detail>
+      ></Overlay>
       <DetailContent
         layoutId={selected}
         variants={items}
@@ -151,13 +160,13 @@ const WebDetail: React.FC<{
             len={Boolean(selectedData.skills && selectedData.skills.length > 8)}
           >
             {selectedData.skills?.map((m) => (
-              <SkillImg m={m} />
+              <SkillImg m={m} page="web" />
             ))}
           </SkillsContent>
           <Website onClick={() => onClick(selectedData.url)} />
         </ASideSection>
       </DetailContent>
-    </Detail>
+    </DetailWrapper>
   );
 };
 

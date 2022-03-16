@@ -40,12 +40,15 @@ const Video = styled.video<{ isMobile: boolean }>`
   box-shadow: ${(props) => props.theme.shadow};
   border: 2px solid white;
   width: 70%;
-  border-radius: ${(props) => (!props.isMobile ? "2rem" : "1.5rem")};
+  border-radius: ${(props) => (!props.isMobile ? "2.5rem" : "1.5rem")};
 `;
 
 const ASideSection = styled.aside`
   width: 30%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const AppTitle = styled.span<{ isMobile: boolean }>`
@@ -56,7 +59,6 @@ const AppTitle = styled.span<{ isMobile: boolean }>`
 const SkillsContent = styled.div`
   display: flex;
   padding: 0px 50px;
-  overflow-x: scroll;
   width: 100%;
   justify-content: center;
   @media screen and (max-width: 420px) {
@@ -98,11 +100,14 @@ const ApplicationDetail: FC<{ data: IVideos }> = ({ data }) => {
       <ASideSection>
         <AppTitle isMobile={isMobile}>{data.title}</AppTitle>
         <div>{data.description}</div>
-        <SkillsContent>
-          {data.skills?.map((m) => (
-            <SkillImg m={m} />
-          ))}
-        </SkillsContent>
+        <div>
+          <h1>사용기술</h1>
+          <SkillsContent>
+            {data.skills?.map((m, index) => (
+              <SkillImg key={m + index} m={m} page="app" />
+            ))}
+          </SkillsContent>
+        </div>
       </ASideSection>
     </WebContent>
   );
