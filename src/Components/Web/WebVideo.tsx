@@ -117,6 +117,7 @@ const WebVideo: React.FC<{
       >
         <TopBar />
         <Video
+          className="aspect-[4/3]"
           src={`${process.env.PUBLIC_URL}/videos/${data.path}`}
           loop
           autoPlay

@@ -84,7 +84,6 @@ ReactDOM.render(
     <RecoilRoot>
       <QueryClientProvider client={client}>
         <ThemeProvider theme={theme}>
-          <GlobalStyle />
           <App />
         </ThemeProvider>
       </QueryClientProvider>

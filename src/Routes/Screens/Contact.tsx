@@ -224,6 +224,7 @@ const Contact = () => {
       initial="initial"
       animate={controls}
       variants={wrapperVariants}
+      className="-z-[1]"
     >
       <Content variants={wrapperVariants}>CONTACT ME!</Content>
       <SendForm onSubmit={handleSubmit(onSubmit)} variants={wrapperVariants}>

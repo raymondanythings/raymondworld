@@ -165,6 +165,20 @@ export const webState = atom<IWebVideos[]>({
       url: "https://raymondanythings.github.io/nwitter/",
       skills: ["React", "Firebase"],
     },
+    {
+      id: 8,
+      title: "pierong",
+      path: "pierong/splash.webm",
+      url: "https://www.pierong.site",
+      description: "파이롱",
+      skills: [
+        "React",
+        "React-query",
+        "Typescript",
+        "Framer-motion",
+        "Styled-components",
+      ],
+    },
   ],
 });
 

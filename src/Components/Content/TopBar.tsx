@@ -25,7 +25,7 @@ const Circle = styled.div<{ col: string }>`
 
 const TopBar = () => {
   return (
-    <Wrapper>
+    <Wrapper className="sticky top-0">
       <Buttons>
         <Circle col="red"></Circle>
         <Circle col="yellow"></Circle>

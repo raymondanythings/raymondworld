@@ -72,7 +72,6 @@ const GoBack = styled(motion.div)`
   margin: 0 auto;
   width: fit-content;
   position: relative;
-  z-index: 0;
 `;
 
 const Arrow = styled(RiArrowUpCircleFill)`
@@ -124,10 +123,10 @@ const Proejcts = () => {
           </Item>
         </Link>
       </ListBtn>
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence mode="wait">
         <Project />
       </AnimatePresence>
-      <GoBack ref={ref}>
+      <GoBack ref={ref} className="-z-[1]">
         <ScrollArrow
           className={inView ? "enable" : "disable"}
           to="top"

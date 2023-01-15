@@ -26,7 +26,7 @@ const TitleUnder = styled(motion.div)`
     left: -0.3rem;
   }
   @media screen and (max-width: 420px) {
-    font-size: 5rem;
+    font-size: 4rem;
   }
 `;
 const TitleOver = styled(motion.div)`
@@ -43,7 +43,7 @@ const TitleOver = styled(motion.div)`
     left: -0.3rem;
   }
   @media screen and (max-width: 420px) {
-    font-size: 5rem;
+    font-size: 4rem;
   }
 `;
 const TitleWrapper = styled(motion.div)`
@@ -138,7 +138,7 @@ const Introduce = () => {
         </TitleWrapper>
         <Img variants={imageVariants}>
           <img
-            src={`${process.env.PUBLIC_URL}/images/profile2.png`}
+            src={`${process.env.PUBLIC_URL}/images/profile3.png`}
             alt="profile"
           />
         </Img>

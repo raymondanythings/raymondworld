@@ -139,6 +139,7 @@ const WebDetail: React.FC<{
         <VideoWrapper url={Boolean(selectedData.url)}>
           <TopBar />
           <Video
+            className="aspect-[4/3] bg-black"
             src={`${process.env.PUBLIC_URL}/videos/${selectedData.path}`}
             clicked={true}
             loop

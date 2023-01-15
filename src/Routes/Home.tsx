@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import styled from "styled-components";
 import Footer from "../Components/Content/Footer";
 import Contact from "./Screens/Contact";
 import Introduce from "./Screens/Introduce";
@@ -10,12 +9,6 @@ import { init } from "@emailjs/browser";
 import { motion, useScroll } from "framer-motion";
 import Experience from "./Screens/Experience";
 
-const Wrapper = styled.div`
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-`;
-
 const Home = () => {
   useEffect(() => {
     init(process.env.REACT_APP_USERID || "");
@@ -23,7 +16,7 @@ const Home = () => {
   const { scrollYProgress } = useScroll();
 
   return (
-    <Wrapper className="px-4">
+    <main className="px-4">
       <motion.div
         style={{
           scaleX: scrollYProgress,
@@ -43,7 +36,7 @@ const Home = () => {
       <Proejcts />
       <Contact />
       <Footer />
-    </Wrapper>
+    </main>
   );
 };
 
