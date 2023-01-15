@@ -1,15 +1,17 @@
-import React from "react";
-import { Engine, Container } from "tsparticles";
+import { useCallback } from "react";
+import { loadFull } from "tsparticles";
+import type { Engine, Container } from "tsparticles-engine";
 import Particles from "react-tsparticles";
 
 const ParticleLayer = () => {
-  const particlesInit = async (engine: Engine): Promise<void> => {};
-
-  const particlesLoaded = async (container: Container) => {};
+  const customInit = useCallback(async (engine: Engine) => {
+    await loadFull(engine);
+  }, []);
+  const particlesLoaded = useCallback(async (container?: Container) => {}, []);
   return (
     <Particles
       id="tsparticles"
-      init={particlesInit}
+      init={customInit}
       loaded={particlesLoaded}
       options={{
         background: {
@@ -352,7 +354,7 @@ const ParticleLayer = () => {
               factor: 1000,
             },
             // max: 500,
-            limit: 100,
+            limit: 80,
             value: 30,
           },
           // 개체 투명도 설정

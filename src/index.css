@@ -13,3 +13,7 @@
   font-style: normal;
   font-weight: normal;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
